@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -120,6 +121,10 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+# for media files to be accessed 
+MEDIA_URL = "media/"
+# the file system path where media files will be stored on the server, on 'media' dir inside the project's base.
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
