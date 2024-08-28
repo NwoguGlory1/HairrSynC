@@ -15,7 +15,7 @@ class Category(models.Model):
     slug = models.SlugField(max_length=255, unique=True, null=True)
     #later, manually update the slug for each product through  djangoadmin & remove null=True once all slugs are populated.)
     #slug is to include searches like http://127.0.0.1:8000/django/, makes urls friendly
-    description = models.TextField(blank=True, null=True)
+    #description = models.TextField(blank=True, null=True)
     #parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.SET_NULL, related_name='subcategories')
     #image = models.ImageField(upload_to='category_images/', blank=True, null=True)
 
@@ -40,7 +40,7 @@ class CategoryImage(models.Model):
 class Product(models.Model):
    id = models.AutoField(primary_key=True)
    name = models.CharField(max_length=255)
-   description = models.TextField(blank=True, null=True)
+   description = models.TextField(blank=True, null=False, default="Default description")
    slug = models.SlugField(max_length=255, unique=True, null=True)
    #later, manually update the slug for each product through  djangoadmin & remove null=True once all slugs are populated.
    image = models.ImageField(upload_to='images/', blank=True, null=True)
