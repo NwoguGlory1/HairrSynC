@@ -22,9 +22,9 @@ from . import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
   # Link your app's URLs here
     path('store/', include('store.urls', namespace='store')),
+    path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Serve media files only during development
