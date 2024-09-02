@@ -1,5 +1,7 @@
 # from django.contrib.auth.models import AbstractUser
 from django.db import models
+import datetime
+from django.contrib.auth.models import User
 
 # Create your models here.
 # User model user registration, login, logout, and password & profile management. Useful for tracking customer information, order history, and preferences.
@@ -22,6 +24,10 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'categories'
         #overrides django from saying categorys on admin
+    
+    @staticmethod
+    def get_all_categories(): 
+        return Category.objects.all() 
 
     def __str__(self):
         return self.name
@@ -48,13 +54,72 @@ class Product(models.Model):
 #    created = models.DateTimeField(auto_now_add=True)
 #    updated = models.DateTimeField(auto_now=True)
    categories = models.ManyToManyField('Category')
+# many to many is because a single product can belong to multiple category.
 #  category = models.ForeignKey('Category', on_delete=models.SET_NULL, related_name='products')
 
 class Meta:
         verbose_name_plural = 'Products'
-        ordering = ('-created')
+        #ordering = ('-created',)
+        #lists products based on when they were created
+    
+        @staticmethod
+        def get_products_by_id(ids): 
+            return Product.objects.filter(id__in=ids) 
+    
+@staticmethod
+def get_all_products(): 
+            return Product.objects.all() 
+    
+@staticmethod
+def get_all_products_by_categoryid(category_id): 
+    if category_id: 
+        return Product.objects.filter(category=category_id) 
+    else: 
+        return Product.get_all_products() 
         def __str__(self):
             return self.name
 
+# Customer model
+class Customer(models.Model): 
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone_number = models.CharField(max_length=20, blank=True, null=True)
+    address = models.TextField(blank=True, null=True)   
+
+# to save the data 
+    def register(self): 
+        self.save() 
+    
+    @staticmethod
+    def get_customer_by_email(email): 
+        try: 
+            return Customer.objects.get(email=email) 
+        except: 
+            return False
+  
+    def isExists(self): 
+        if Customer.objects.filter(email=self.email): 
+            return True
+  
+        return False
+    
 # Order model
+class Order(models.Model): 
+    products = models.ManyToManyField('Product')  
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE) 
+    quantity = models.IntegerField(default=1) 
+    price = models.DecimalField(max_digits=10, decimal_places=2) 
+    total_price = models.DecimalField(max_digits=10, decimal_places=2)
+    address = models.CharField(max_length=50, default='', blank=True) 
+    phone = models.CharField(max_length=50, default='', blank=True) 
+    date = models.DateField(default=datetime.datetime.today) 
+    status = models.BooleanField(default=False) 
+
+    def placeOrder(self): 
+        self.save() 
+  
+    @staticmethod
+    def get_orders_by_customer(customer_id): 
+        return Order.objects.filter(customer=customer_id).order_by('-date') 
+
+
 # Cart model
