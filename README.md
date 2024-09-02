@@ -6,25 +6,21 @@
 Welcome to HairSynC, a brand that links lovers of authentic luxury hairs and wigs directly to trusted Hair Companies.
 
 ## Live Site url
- https://hairsync.onrender.com/
 
 ## FinalProject Blog Article:
 
 ## Authors GitHub urls: 
-https://github.com/NwoguGlory1/HairSynC.git
-
-https://github.com/fae713/django.git
+https://github.com/NwoguGlory1/HairrSynC.git
 
 
 ## Authors LinkedIn urls: 
 https://www.linkedin.com/in/nwogu-glory-a2a95020b/
-https://www.linkedin.com/in/favour-michael/
 
 ## Installation
 To run this project locally, follow these steps:
 
 Clone the repository:
-git clone https://github.com/NwoguGlory1/HairSynC.git
+git clone https://github.com/NwoguGlory1/HairrSynC.git
 
 Navigate to the project directory:
 cd hairsync
@@ -45,7 +41,7 @@ python manage.py runserver
 Access the website at http://localhost:8000/store
 
 ## Usage
-Browse through the different categories of hair products available on the website.
+Browse through the various categories of hair products available on the website.
 Click on All Products to view its details and add it to your cart.
 Navigate to a specific product page (Straight Hairs, Wavy Hairs, etc) and click Add To Cart button to add it to cart.
 Click the cart logo on the nav bar to navigate to the Shopping Page, review your selected items and proceed to checkout.
