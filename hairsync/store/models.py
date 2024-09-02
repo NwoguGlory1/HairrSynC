@@ -123,3 +123,29 @@ class Order(models.Model):
 
 
 # Cart model
+class CartItem(models.Model):
+    product = models.ForeignKey('Product', on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=0)
+    date_added = models.DateTimeField(auto_now_add=True)
+ 
+    def __str__(self):
+        return f'{self.quantity} x {self.product.name}'
+# Payment model
+
+# ShippingAddress model
+class ShippingAddress(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    address1 = models.CharField("Address1", max_length=1024)
+    address2 = models.CharField("Address2", max_length=1024, blank=True, null=True)
+    city = models.CharField("City", max_length=1024)
+    postal_code = models.CharField("POSTAL", max_length=12)
+    country = models.CharField(max_length=100)
+    zip_code = models.CharField("ZIP", max_length=12)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+# Review model
+class Review(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    rating = models.PositiveIntegerField()
+    comment = models.TextField(blank=True, null=True)
