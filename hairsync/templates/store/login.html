@@ -1,21 +1,29 @@
 {% extends './base.html' %}
 {% load static %}
-{% block title %}Home{% endblock %}
+
 
 {% block content %}
-    <h2>Welucome to the Login Page</h2>
+ <div class="login-page container-fluid">
+    <h2>Login</h2>
+    <form class="mt-4"  method="POST" action="{% url 'store:login' %}">
+        {% csrf_token %}
+        <!-- {{ form.as_p }} -->
+        <form>
+            <h4 class="text-center">Login</h4>
+            <div class="mb-3 mt-5">
+                <label for="username" class="form-label">User Name</label>
+                <input type="text" class="form-control" placeholder="Enter Username" id="username" name="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" placeholder="Enter password" id="password" name="password" required>
+                <div id="emailHelp" class="form-text mt-3">Forget Password?</div>
+            </div>
+        </form>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
 {% endblock %}
 
 
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
-    <h1>Welcome to Home page!</h1>
-</body>
-</html> -->
