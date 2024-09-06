@@ -28,16 +28,21 @@ def signup(request):
     return render(request, 'store/signup.html', {'form': form})
 
 def login_view(request):
+    # using django built in authentication
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)
             return redirect('store/home.html')
+        else:
+            # Handle invalid form case, which includes invalid credentials
+            messages.error(request, 'Invalid username or password.')
     else:
         form = AuthenticationForm()
 
     return render(request, 'store/login.html', {'form': form})
+
 
 def logout_view(request):
     logout(request)
