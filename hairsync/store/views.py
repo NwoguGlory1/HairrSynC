@@ -58,6 +58,7 @@ def signup(request):
         # Display an information message indicating successful account creation
         messages.info(request, "Account created Successfully!")
         return redirect('/signup/')
+        #  return redirect('signup')
      
     # Render the registration page template (GET request)
     return render(request, 'store/signup.html')
