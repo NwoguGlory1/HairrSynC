@@ -1,6 +1,7 @@
 # from django.contrib.auth.models import AbstractUser
 from django.db import models
 import datetime
+from django.urls import reverse
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -61,10 +62,14 @@ class Meta:
         verbose_name_plural = 'Products'
         #ordering = ('-created',)
         #lists products based on when they were created
+def get_absolute_url(self):
+    # used to build '<slug:slug>/' url 
+    return reverse('store:detail', args=[self.slug])
+
     
-        @staticmethod
-        def get_products_by_id(ids): 
-            return Product.objects.filter(id__in=ids) 
+@staticmethod
+def get_products_by_id(ids): 
+        return Product.objects.filter(id__in=ids) 
     
 @staticmethod
 def get_all_products(): 

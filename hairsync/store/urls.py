@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 #from django.contrib.auth import views as auth_views
 
-app_name = "store"
+# app_name = "store"
 urlpatterns = [
     # Home Page
     path('', views.index, name='index'),
@@ -10,7 +10,7 @@ urlpatterns = [
    
     path('all-products/', views.all_products, name='all_products'),
     
-    path('<slug:slug>/', views.detail, name='detail'),
+    path('item/<slug:slug>/', views.detail, name='detail'),
     # path('', views., name=''),
 
     path('signup/', views.signup, name='signup'), 
