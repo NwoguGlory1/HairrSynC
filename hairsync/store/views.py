@@ -23,6 +23,9 @@ def all_products(request):
     products = Product.objects.all()
     return render(request, 'store/all-products.html', {'products': products})
 
+def double_drawn(request, slug):
+    return render(request, 'store/doubledrawn.html')
+
 def signup(request):
     # Check if the HTTP request method is POST (form submission)
     if request.method == 'POST':

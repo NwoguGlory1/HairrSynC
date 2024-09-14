@@ -7,10 +7,15 @@ urlpatterns = [
     # Home Page
     path('', views.index, name='index'),
     path('home/', views.home, name='home'),
+   
     path('all-products/', views.all_products, name='all_products'),
+    path('double_drawn/', views.double_drawn, name='double_drawn'),
+    # path('', views., name=''),
+
     path('signup/', views.signup, name='signup'), 
     path('login/', views.login_view, name='login'), 
     path('logout/', views.logout_view, name='logout'), 
+
     path('cart/', views.cart, name='cart'),
     # path('add/<int:product_id>/', views.add_to_cart, name='add_to_cart'),
     # path('remove/<int:item_id>/', views.remove_from_cart, name='remove_from_cart'),
