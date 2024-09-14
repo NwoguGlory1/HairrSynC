@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from . import views
@@ -23,8 +24,9 @@ def all_products(request):
     products = Product.objects.all()
     return render(request, 'store/all-products.html', {'products': products})
 
-def double_drawn(request, slug):
-    return render(request, 'store/doubledrawn.html')
+def detail(request, slug):
+    product = get_object_or_404(Product, slug=slug)
+    return render(request, 'store/detail.html', {'product': product})
 
 def signup(request):
     # Check if the HTTP request method is POST (form submission)

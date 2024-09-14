@@ -9,7 +9,8 @@ urlpatterns = [
     path('home/', views.home, name='home'),
    
     path('all-products/', views.all_products, name='all_products'),
-    path('double_drawn/', views.double_drawn, name='double_drawn'),
+    
+    path('<slug:slug>/', views.detail, name='detail'),
     # path('', views., name=''),
 
     path('signup/', views.signup, name='signup'), 
