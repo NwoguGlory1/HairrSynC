@@ -1,6 +1,5 @@
 {% extends './base.html' %}
 {% load static %}
-{% block title %}Home{% endblock %}
 
 {% block content %}
 <main>
@@ -29,7 +28,7 @@
                 <img class="img-fluid" alt="Responsive image" src="{{ product.image.url }}"> 
                 <div class="card-body">
                     <p class="card-text">
-                        <a class="text-dark text-decoration-none" href="">{{ product.title}}</a>
+                        <a class="text-dark text-decoration-none" href="">{{ product.name }}</a>
                     </p>
                         <div class="d-flex justify-content-between align-items-center">
                     <small class="text-muted">9 mins</small>
