@@ -6,8 +6,9 @@ from . import views
 urlpatterns = [
     # Home Page
     path('', views.index, name='index'),
+    
     path('home/', views.home, name='home'),
-   
+    
     path('all-products/', views.all_products, name='all_products'),
     
     path('item/<slug:slug>/', views.detail, name='detail'),
