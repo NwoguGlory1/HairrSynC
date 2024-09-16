@@ -30,6 +30,10 @@ class Category(models.Model):
     def get_all_categories(): 
         return Category.objects.all() 
 
+    def get_absolute_url(self):
+        # used to build '<slug:slug>/' url 
+        return reverse('detail', args=[self.slug])
+    
     def __str__(self):
         return self.name
 

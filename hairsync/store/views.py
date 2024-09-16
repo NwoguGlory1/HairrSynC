@@ -15,9 +15,10 @@ def index(request):
 def home(request):
     return render(request, 'store/home.html')
 
-def category_products(request, slug):
-    category = get_object_or_404(Category, slug=slug)
-    products = Product.objects.filter(categories=category)
+def category_products(request, category_slug):
+    category = get_object_or_404(Category, slug=category_slug) #Gets all info about category
+    # products = Product.objects.filter(category=category) used if you have category field in product model
+    products = Product.objects.filter(categories=category) # cause you used plural categories
     return render(request, 'store/category_products.html', {'category': category, 'products': products})
 
 def all_products(request):
