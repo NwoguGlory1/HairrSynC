@@ -36,25 +36,25 @@
                     <a class="navbar-brand" href="#">
                       <img src="{% static 'images/Logo.png' %}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                       HairSynC</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                       <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarText">
                       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                          <a class="nav-link active" aria-current="page" href="#">All Products</a>
+                          <a class="nav-link active" aria-current="page" href="{% url 'all_products' %}">All Products</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link active"  aria-current="page" href="#">Straight Hairs</a>
+                          <a class="nav-link active"  aria-current="page" href="{% url 'all_products' %}">Straight Hairs</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link active"  aria-current="page" href="#">Wavy Hairs</a>
+                          <a class="nav-link active"  aria-current="page" href="{% url 'all_products' %}">Wavy Hairs</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link active"  aria-current="page" href="#">Coily Hairs</a>
+                          <a class="nav-link active"  aria-current="page" href="{% url 'all_products' %}">Coily Hairs</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link active"  aria-current="page" href="#">Hair Products</a>
+                          <a class="nav-link active"  aria-current="page" href="{% url 'all_products' %}">Hair Products</a>
                         </li>
                       </ul>
                       <form class="d-flex" role="search">
