@@ -15,10 +15,10 @@ def index(request):
 def home(request):
     return render(request, 'store/home.html')
 
-# def categories(request):
-#     return {
-#         'categories': Category.objects.all()
-#     }
+def category_products(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+    products = Product.objects.filter(categories=category)
+    return render(request, 'store/category_products.html', {'category': category, 'products': products})
 
 def all_products(request):
     products = Product.objects.all()

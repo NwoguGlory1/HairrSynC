@@ -1,0 +1,19 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>{{ category.name }}</h1>
+
+<div class="products">
+    {% for product in products %}
+    <div class="product">
+        <h2>{{ product.name }}</h2>
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        <p>Price: ${{ product.price }}</p>
+        <a href="{{ product.get_absolute_url }}">View Details</a>
+    </div>
+    {% empty %}
+    <p>No products found in this category.</p>
+    {% endfor %}
+</div>
+{% endblock %}
