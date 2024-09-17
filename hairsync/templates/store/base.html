@@ -29,6 +29,7 @@
     <body>
         <header>
             <div>
+              {% block navbar %}
                 <!--Navbar-->
                 <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary " data-bs-theme="dark">
                 <!-- <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark"> -->
@@ -92,9 +93,9 @@
                     </div>
                   </div>
                 </nav> -->
+                {% endblock %}
                 </div>
-                        
-                      </header>
+              </header>
 <main>
                         <div id="content">{% block content %} {% endblock %}</div>
 </main>

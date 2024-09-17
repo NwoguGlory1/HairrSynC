@@ -1,12 +1,18 @@
 {% extends './base.html' %}
 {% load static %}
 
+{% block navbar %}
+<!-- Empty navbar block to hide navbar -->
+{% endblock %}
+
 {% block content %}
 <div class="container">
+    <!-- Your signup form goes here -->
     <h2>Sign Up</h2>
     <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form.as_p }} 
+        <!-- This form renders the form fields. -->
         <button type="submit">Sign Up</button>
     </form>
 </div>
