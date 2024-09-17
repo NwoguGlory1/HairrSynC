@@ -4,7 +4,6 @@
 
 {% block content %}
  <div class="login-page container-fluid">
-    <h2>Login</h2>
     <form class="mt-4"  method="POST" action="{% url 'login' %}">
         {% csrf_token %}
         <h4 class="text-center">Login</h4>
@@ -15,7 +14,7 @@
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control" placeholder="Enter password" id="password" name="password" required>
-            <div id="emailHelp" class="form-text mt-3">Forget Password?</div>
+            <a href="" class="form-text mt-3">Forgot Password?</a>
         </div>
         <button type="submit"class="btn btn-primary">Submit</button>
     </form>
