@@ -12,9 +12,9 @@
         <meta content="" name="keywords">
 
         <!-- Favicons -->
-        <link href="" rel="icon">
+        <link href="{% static 'images/favicon.png' %}" rel="icon">
         <!-- Template Main CSS File -->
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
         
         <!-- Link to bootstrap-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -30,51 +30,77 @@
         <header>
             <div>
                 <!--Navbar-->
-              <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
-                <div class="container-fluid">
-                  <a class="navbar-brand" href="#home">
-                    <img class="d-inline-block align-text-top" src='store/images/Logo.png' alt="logo" width="30" height="24">HairSynC
-                  </a>
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav m-auto my-2 my-lg-0">
-                      <li class="nav-item">
-                        <a class="nav-link" href="#home"></a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#all_categories">All Categories</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#straight">Straight</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#wavy">Wavy</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#coily">Coily</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#hairproducts">Hair Products</a>
-                      </li>
-                    </ul>
-                    <form class="search">
-                      <input type="search" placeholder="Search" aria-label="Search">
-                      <button type="submit">Search</button>
-                    </form>
-                    <button class="btn btn-primary" p-2 my-lg-0 my-2>Log In</button>
-                    <button class="btn btn btn-primary" p-2 my-lg-0 my-2>Sign Up</button>
-                </div>
-              </nav>
+                <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary " data-bs-theme="dark">
+                <!-- <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark"> -->
+                  <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                      <img src="{% static 'images/Logo.png' %}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                      HairSynC</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarText">
+                      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                          <a class="nav-link active" aria-current="page" href="{% url 'all_products' %}">All Products</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link active"  aria-current="page" href="{% url 'category_products' category_slug='straight-hairs' %}">Straight Hairs</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link active"  aria-current="page" href="{% url 'category_products' category_slug='wavy-hairs'%}">Wavy Hairs</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link active"  aria-current="page" href="{% url 'category_products' category_slug='coily-hairs'%}">Coily Hairs</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link active"  aria-current="page" href="{% url 'category_products' category_slug='hair-products'%}">Hair Products</a>
+                        </li>
+                      </ul>
+                      <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-light" type="submit">Search</button>
+                      </form>
+                    </div>
+                  </div>
+                </nav>
+                <!-- <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+                  <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Navbar</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarColor01">
+                      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                          <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Features</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Pricing</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">About</a>
+                        </li>
+                      </ul>
+                      <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-light" type="submit">Search</button>
+                      </form>
+                    </div>
+                  </div>
+                </nav> -->
                 </div>
                         
                       </header>
-                      <main>
+<main>
                         <div id="content">{% block content %} {% endblock %}</div>
-                      </main>
+</main>
 
-        <!--Footer-->
+{% block footer %}
+<!--Footer-->
 <footer class="bg-dark text-white pt-5 pb-4">
   <div class="container text-center text-md-left">
     <div class="row text-center text-md text-md-left">
@@ -162,5 +188,6 @@
       </div>
     </div>
   </footer>
+  {% endblock %}
 </body>
 </html>

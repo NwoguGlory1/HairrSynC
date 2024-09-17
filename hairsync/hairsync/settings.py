@@ -129,7 +129,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
  
-STATIC_URL = "static/"
+STATIC_URL = "static/"  # This is the URL used to access static files in the browser
 
 # for media files to be accessed 
 MEDIA_URL = "/media/"
@@ -139,3 +139,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # This points Django to the 'static' folder in your project directory.
+]

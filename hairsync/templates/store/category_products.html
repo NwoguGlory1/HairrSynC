@@ -1,0 +1,31 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>{{ category.name }}</h1>
+
+<div class="category-images">
+    {% for image in category.categoryimage_set.all %}
+    <img src="{{ image.image.url }}" alt="{{ image.name }}" class="img-fluid">
+    {% endfor %}
+</div>
+
+<div class="products">
+    {% for product in products %}
+    <div class="col">
+        <div class="card shadow-sm">
+            <img class="img-fluid" alt="Responsive image" src="{{ product.image.url }}"> 
+            <div class="card-body">
+                <p class="card-text">
+                    <a class="text-dark text-decoration-none" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                    <div class="col-6 text-end"><span class="h4">${{ product.price }}</span></div>
+                </p>
+                <a class="btn btn-primary" href="#">Add to Cart</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+

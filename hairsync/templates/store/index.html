@@ -1,11 +1,11 @@
 {% extends './base.html' %}
 {% load static %}
-{% block title %}Landing Page{% endblock %}
 
 {% block content %}
 <section id="home">
     <h1 class="text-center"> Welcome to Our Luxury Hair Page </h1>
     <p><i>...connecting hair lovers to the source!!!</i></p>
-    <a href="" class="btn signin m-4">Shop Now</a>
+    <a href="{% url 'all_products' %}" class="btn signin m-4">Shop Now</a>
   </section>
 {% endblock %}
+<!-- {% url '' %} -->
