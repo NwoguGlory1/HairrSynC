@@ -16,18 +16,32 @@
         {% endfor %}
     {% endif %}
 
-    <form method="POST" action="">
+    <form method="POST" action="{% url 'signup' %}">
         {% csrf_token %}
-        {{form.username.label}}
-        {{form.username}}
-
-        {{form.password1.label}}
-        {{form.password1}}
-
-        {{form.password2.label}}
-        {{form.password2}}
-        <button type="submit" class="btn btn-success">Register Here Now</button>
-    </form>
+        {% for field in form %}
+        <div class="input-group mb-4">
+            <span class="input-group-text">
+                {% if field.name == "username" or field.name == "first_name" or field.name == "last_name" %}
+                <i class="fa fa-user"></i>
+                {% elif field.name == "email" %}
+                <i class="fa fa-envelope"></i>
+                {% elif field.name == "password1" or field.name == "password2" %}
+                <i class="fa fa-lock"></i>
+                {% endif %}
+            </span>
+             <input type="text" class="form-control" placeholder="Last Name" name="last_name" required>
+        </div>
+        {{ field }}  <!-- This renders the actual form field -->
+        {% endfor %}
+        <div class="d-grid">
+            <button type="submit" class="btn btn-success">Register Here Now</button>
+            <p class="text-center text-muted mt-3">
+                When You Click the Register Button, You Agree to our <a href="#">Terms and Conditions</a>
+            </p>
+            <p class="text-center">
+                Already Have an Account ? <a href="{% url 'login' %}">Login Here</a>
+            </p>
+        </div>
 </div>
 
 {% endblock %}
