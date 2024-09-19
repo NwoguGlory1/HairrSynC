@@ -15,12 +15,12 @@
         <div class="alert alert-{{ message.tags }}">{{ message }}</div>
         {% endfor %}
     {% endif %}
-    
-    <form method="POST">
+
+    <form method="POST" action="">
         {% csrf_token %}
         {{ form.as_p }} 
         <!-- This form renders the form fields. -->
-        <button type="submit">Sign Up</button>
+        <input type="submit" name="Create User">
     </form>
 </div>
 
