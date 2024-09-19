@@ -9,6 +9,11 @@
 <div class="container">
     <!-- Your signup form goes here -->
     <h2>Sign Up</h2>
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }} 
