@@ -43,7 +43,7 @@ def signup(request):
          
         if user.exists():
             # Display an information message if the username is taken
-            messages.info(request, "Username already taken!")
+            messages.error(request, "Username already taken!")
             return redirect('/signup/')
          
         # Create a new User object with the provided information
@@ -59,8 +59,8 @@ def signup(request):
          
         # Display an information message indicating successful account creation
         messages.info(request, "Account created Successfully!")
-        return redirect('/signup/')
-        #  return redirect('signup')
+        return redirect('/login/')
+        #  return redirect('login')
      
     # Render the registration page template (GET request)
     return render(request, 'store/signup.html')
@@ -74,7 +74,7 @@ def login_view(request):
         if not User.objects.filter(username=username).exists():
             # Display an error message if the username does not exist
             messages.error(request, 'Invalid Username')
-            return redirect('/login/')
+            return render(request, 'store/login.html')
 
         # Authenticate the user  with the provided username, password
         user = authenticate(username=username, password=password)
