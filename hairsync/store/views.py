@@ -3,7 +3,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+# from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from . import views
 from .forms import SignUpForm
 
@@ -37,7 +37,7 @@ def signup(request):
             user = form.save()
             login(request, user)
             messages.success(request, "Account created successfully!")
-            return redirect('login')
+            return redirect('/login/')
     else:
         form = SignUpForm()
     return render(request, 'store/signup.html', {'form': form})
