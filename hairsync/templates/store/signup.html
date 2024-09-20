@@ -1,6 +1,7 @@
 {% extends './base.html' %}
 {% load static %}
 
+
 {% block navbar %}
 <!-- Empty navbar block to hide navbar -->
 {% endblock %}
@@ -17,35 +18,32 @@
     {% endif %}
 
     <form method="POST" action="">
-        <label for="id_username">{{ form.username.label }}</label>
-    <input 
-        type="text" 
-        name="{{ form.username.name }}" 
-        id="id_username" 
-        value="{{ form.username.value|default:'' }}" 
-        placeholder="Enter your username" 
-        class="form-control" 
-        required>
-
-        <!-- Password Field 1 -->
-    <label for="id_password1">{{ form.password1.label }}</label>
-    <input 
-        type="password" 
-        name="{{ form.password1.name }}" 
-        id="id_password1" 
-        placeholder="Enter your password" 
-        class="form-control" 
-        required>
-
-       <!-- Password Field 2 -->
-    <label for="id_password2">{{ form.password2.label }}</label>
-    <input 
-        type="password" 
-        name="{{ form.password2.name }}" 
-        id="id_password2" 
-        placeholder="Confirm your password" 
-        class="form-control" 
-        required>
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <span class="input-group-text"><i class="fas fa-user"></i></span>
+            {{ form.username }}
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text"><i class="fas fa-user"></i></span>
+            {{ form.first_name }}
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text"><i class="fas fa-user"></i></span>
+            {{ form.last_name }}
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+            {{ form.email }}
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+            {{ form.password1 }}
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+            {{ form.password2 }}
+        </div>
+        
         <button type="submit" class="btn btn-success">Register Here Now</button>
     </form>
 {% endblock %}
