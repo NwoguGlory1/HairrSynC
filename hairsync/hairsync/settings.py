@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "store",
+    
 ]
 # MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 # AUTH_USER_MODEL = 'store.User'
