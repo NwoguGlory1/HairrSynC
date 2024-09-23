@@ -35,12 +35,15 @@ def signup(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)
             messages.success(request, "Account created successfully!")
+            login(request, user)
             return redirect('/login/')
+        else:
+            messages.error(request, "Username or password already exists!")
+            return render(request, 'store/signup.html', {'form': form})
     else:
         form = SignUpForm()
-    return render(request, 'store/signup.html', {'form': form})
+        return render(request, 'store/signup.html', {'form': form})
 
     # Check if the HTTP request method is POST (form submission)
     # if request.method == 'POST':

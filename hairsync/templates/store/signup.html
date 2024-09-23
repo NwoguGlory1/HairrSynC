@@ -43,8 +43,16 @@
             <span class="input-group-text"><i class="fas fa-lock"></i></span>
             {{ form.password2 }}
         </div>
-        
+    </div>
+    <div class="d-grid">
         <button type="submit" class="btn btn-success">Register Here Now</button>
-    </form>
+        <p class="text-center text-muted mt-3">
+            When You Click the Register Button above, You Agree to our <a href="#">Terms and Conditions</a>
+        </p>
+        <p class="text-center">
+            Already Have an Account ? <a href="{% url 'login' %}">Login Here</a>
+        </p>
+    </div>
+</form>
 {% endblock %}
 
