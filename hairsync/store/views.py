@@ -33,14 +33,25 @@ def detail(request, slug):
 def signup(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
+        
+        # First check if the form is valid before additional checks
         if form.is_valid():
-            user = form.save()
-            messages.success(request, "Account created successfully!")
-            login(request, user)
-            return redirect('/login/')
+            email = form.cleaned_data.get('email')
+            
+            # Check if the email already exists
+            if User.objects.filter(email=email).exists():
+                messages.error(request, 'The email you inputted is already in use')
+            else:
+                # If the email is unique, save the user and log them in
+                user = form.save()
+                messages.success(request, "Account created successfully!")
+                login(request, user)
+                return redirect('/login/')
         else:
-            messages.error(request, "Username or password already exists!")
-            return render(request, 'store/signup.html', {'form': form})
+            # If the form is not valid (other field errors like username or password)
+            messages.error(request, "Username already exists!")
+
+        return render(request, 'store/signup.html', {'form': form})
     else:
         form = SignUpForm()
         return render(request, 'store/signup.html', {'form': form})

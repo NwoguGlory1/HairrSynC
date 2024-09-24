@@ -43,3 +43,4 @@ class SignUpForm(UserCreationForm):
             self.fields['email'].widget = forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email address'})
             self.fields['password1'].widget = PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'})
             self.fields['password2'].widget = PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password confirmation'})
+            
