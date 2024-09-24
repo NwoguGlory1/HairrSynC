@@ -1,6 +1,7 @@
 {% extends './base.html' %}
 {% load static %}
 
+
 {% block navbar %}
 <!-- Empty navbar block to hide navbar -->
 {% endblock %}
@@ -9,13 +10,49 @@
 <div class="container">
     <!-- Your signup form goes here -->
     <h2>Sign Up</h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }} 
-        <!-- This form renders the form fields. -->
-        <button type="submit">Sign Up</button>
-    </form>
-</div>
 
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <span class="input-group-text"><i class="fas fa-user"></i></span>
+            {{ form.username }}
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text"><i class="fas fa-user"></i></span>
+            {{ form.first_name }}
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text"><i class="fas fa-user"></i></span>
+            {{ form.last_name }}
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+            {{ form.email }}
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+            {{ form.password1 }}
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+            {{ form.password2 }}
+        </div>
+    </div>
+    <div class="d-grid">
+        <button type="submit" class="btn btn-success">Register Here Now</button>
+        <p class="text-center text-muted mt-3">
+            When You Click the Register Button above, You Agree to our <a href="#">Terms and Conditions</a>
+        </p>
+        <p class="text-center">
+            Already Have an Account ? <a href="{% url 'login' %}">Login Here</a>
+        </p>
+    </div>
+</form>
 {% endblock %}
 

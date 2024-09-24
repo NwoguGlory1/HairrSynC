@@ -2,7 +2,7 @@
 from django.db import models
 import datetime
 from django.urls import reverse
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 
 # Create your models here.
 # User model user registration, login, logout, and password & profile management. Useful for tracking customer information, order history, and preferences.
@@ -108,7 +108,12 @@ class Customer(models.Model):
             return True
   
         return False
+
+# class CustomUser(AbstractUser):
+#     email = models.EmailField(unique=True, max_length=254, verbose_name='email address')
     
+#     def __str__(self):
+#         return self.username
 # Order model
 class Order(models.Model): 
     products = models.ManyToManyField('Product')  

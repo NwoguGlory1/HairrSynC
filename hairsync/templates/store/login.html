@@ -3,6 +3,15 @@
 
 
 {% block content %}
+
+    {% if messages %}
+     {% for message in messages %}
+     <div class="alert alert-warning alert-dismissable fade show" role="alert">  
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      {% endfor %}
+    {%  endif %}
+    
  <div class="login-page container-fluid">
     <form class="mt-4"  method="POST" action="{% url 'login' %}">
         {% csrf_token %}
