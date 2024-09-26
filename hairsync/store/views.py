@@ -5,8 +5,8 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 # from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from . import views
-from .forms import SignUpForm
-
+from .forms import SignUpForm, EmailValidationOnForgotPassword
+from django.contrib.auth.views import PasswordResetView
 from .models import Category, CategoryImage, Product
 
 # Create your views here.
