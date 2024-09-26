@@ -16,10 +16,6 @@ def index(request):
 def home(request):
     return render(request, 'store/home.html')
 
-def password_reset_form(request, )
-
-
-
 
 def category_products(request, category_slug):
     category = get_object_or_404(Category, slug=category_slug) #Gets all info about category

@@ -20,15 +20,14 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
 
     # Forgot password URL
-    path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
+    path('password_reset/', auth_views.PasswordResetView.as_view(template_name='store/password_reset_form.html'), name='password_reset'),
     # Page shown after submitting email for password reset
-    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='store/password_reset_done.html'), name='password_reset_done'),
     # URL from the password reset email for the user to enter a new password
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='store/password_reset_confirm.html'), name='password_reset_confirm'),
     # Page shown after the user successfully resets their password
-    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
-
-
+    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='store/password_reset_complete.html'), name='password_reset_complete'),
+    
     path('logout/', views.logout_view, name='logout'), 
 
     path('cart/', views.cart, name='cart'),
