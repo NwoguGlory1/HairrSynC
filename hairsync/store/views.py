@@ -5,8 +5,10 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 # from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from . import views
-from .forms import SignUpForm, EmailValidationOnForgotPassword
+from .forms import SignUpForm
+from .forms import EmailValidationOnForgotPassword
 from django.contrib.auth.views import PasswordResetView
+from django.urls import reverse_lazy
 from .models import Category, CategoryImage, Product
 
 # Create your views here.
@@ -116,6 +118,14 @@ def login_view(request):
             return redirect('/home/')
     else:
         return render(request, 'store/login.html')
+    
+
+class CustomPasswordResetView(PasswordResetView):
+    template_name = 'store/password_reset_form.html'  # Template for the reset form
+    form_class = EmailValidationOnForgotPassword  # Custom form for validation
+    success_url = reverse_lazy('password_reset_done')  # Redirect on success
+
+
 
 def logout_view(request):
     logout(request)

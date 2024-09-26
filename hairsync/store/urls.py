@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import CustomPasswordResetView 
 from django.contrib.auth import views as auth_views
 
 # app_name = "store"
@@ -20,7 +21,10 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
 
     # Forgot password URL
-    path('password_reset/', auth_views.PasswordResetView.as_view(template_name='store/password_reset_form.html'), name='password_reset'),
+    # path('password_reset/', auth_views.PasswordResetView.as_view(template_name='store/password_reset_form.html'), name='password_reset'),
+    
+    # Forgot password URL (using the custom view)
+    path('password_reset/', CustomPasswordResetView.as_view(), name='password_reset'),
     # Page shown after submitting email for password reset
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='store/password_reset_done.html'), name='password_reset_done'),
     # URL from the password reset email for the user to enter a new password
