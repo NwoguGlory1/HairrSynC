@@ -126,8 +126,8 @@ class CustomPasswordResetView(PasswordResetView):
     success_url = reverse_lazy('password_reset_done')  # Redirect on success
 
     # Optional: Add form invalid handling to display errors
-    def form_invalid(self, form):
-        return self.render_to_response(self.get_context_data(form=form))
+    # def form_invalid(self, form):
+    #     return self.render_to_response(self.get_context_data(form=form))
 
 def logout_view(request):
     logout(request)
