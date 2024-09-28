@@ -124,7 +124,12 @@ class CustomPasswordResetView(PasswordResetView):
     template_name = 'store/password_reset_form.html'  # Template for the reset form
     form_class = EmailValidationOnForgotPassword  # Custom form for validation
     success_url = reverse_lazy('password_reset_done')  # Redirect on success
-
+    def form_valid(self, form):
+        try:
+            return super().form_valid(form)
+        except Exception as e:
+            messages.error(self.request, str(e))
+            return self.form_invalid(form)
 
 
 def logout_view(request):

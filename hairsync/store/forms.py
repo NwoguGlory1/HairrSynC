@@ -47,8 +47,7 @@ class SignUpForm(UserCreationForm):
             
 class EmailValidationOnForgotPassword(PasswordResetForm):
     def clean_email(self):
-        email = self.cleaned_data['email']
+        email = self.cleaned_data.get('email') 
         if not User.objects.filter(email__iexact=email, is_active=True).exists():
             raise ValidationError("There is no user registered with the specified email address!")
         return email
-
