@@ -48,7 +48,7 @@ class SignUpForm(UserCreationForm):
 class EmailValidationOnForgotPassword(PasswordResetForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
-        print(f"Validating email: {email}")  # Add this to check if it's called
+        print(f"Validating email: {email}")  # Added this to check if email was retrieved by outputting it to terminal
         if not User.objects.filter(email__iexact=email, is_active=True).exists():
             raise ValidationError("There is no user registered with the specified email address!")
         return email

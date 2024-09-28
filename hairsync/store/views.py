@@ -121,8 +121,8 @@ def login_view(request):
     
 
 class CustomPasswordResetView(PasswordResetView):
-    template_name = 'store/password_reset_form.html'  # Template for the reset form
-    form_class = EmailValidationOnForgotPassword  # Custom form for validation
+    template_name = 'store/password_reset_form.html'  # Template to render when the user accesses the password reset form.
+    form_class = EmailValidationOnForgotPassword  # override Django's default form and instruct it to use your custom form instead.
     success_url = reverse_lazy('password_reset_done')  # Redirect on success
 
     # Optional: Add form invalid handling to display errors
