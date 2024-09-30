@@ -6,6 +6,11 @@ from django.contrib.auth.models import User
 # from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from . import views
 from .forms import SignUpForm
+from .forms import EmailValidationOnForgotPassword
+from django.contrib.auth.views import PasswordResetView
+from django.urls import reverse_lazy
+from .forms import EmailValidationOnForgotPassword
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView
 
 from .models import Category, CategoryImage, Product
 
@@ -15,6 +20,7 @@ def index(request):
 
 def home(request):
     return render(request, 'store/home.html')
+
 
 def category_products(request, category_slug):
     category = get_object_or_404(Category, slug=category_slug) #Gets all info about category
@@ -115,6 +121,43 @@ def login_view(request):
             return redirect('/home/')
     else:
         return render(request, 'store/login.html')
+    
+
+class CustomPasswordResetView(PasswordResetView):
+    template_name = 'store/password_reset_form.html'  # Template to render when the user accesses the password reset form.
+    form_class = EmailValidationOnForgotPassword  # override Django's default form and instruct it to use your custom form instead.
+    success_url = reverse_lazy('password_reset_done')  # Redirect on success
+
+    # Optional: Add form invalid handling to display errors
+    # def form_invalid(self, form):
+    #     return self.render_to_response(self.get_context_data(form=form))
+
+    def form_valid(self, form):
+        # Get the email from the cleaned form data (this will be validated by the form's clean_email method)
+        email = form.cleaned_data.get('email')
+
+        # Store the email in the session
+        self.request.session['email'] = email
+
+        # Proceed with the rest of the password reset process
+        return super().form_valid(form)
+
+# Handles the "Password Link Sent" page
+class CustomPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'store/password_reset_done.html'  # Template for "Password Link Sent" page
+
+    def get_context_data(self, **kwargs):
+        # Call the parent class to get the default context
+        context = super().get_context_data(**kwargs)
+
+        # Retrieve the email from the session (if it exists)
+        email = self.request.session.get('email', '')
+
+        # Add the email to the context so it can be displayed in the template
+        context['email'] = email
+
+        return context
+
 
 def logout_view(request):
     logout(request)

@@ -11,7 +11,8 @@
 #     confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password'}))
 
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordResetForm
+from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.forms.widgets import EmailInput, PasswordInput
 
@@ -44,3 +45,13 @@ class SignUpForm(UserCreationForm):
             self.fields['password1'].widget = PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'})
             self.fields['password2'].widget = PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password confirmation'})
             
+class EmailValidationOnForgotPassword(PasswordResetForm):
+    def clean_email(self):
+          # Get the email entered in the form
+        email = self.cleaned_data.get('email')
+        # Log the email for debugging (optional)
+        print(f"Validating email: {email}")  # Added this to check if email was retrieved by outputting it to terminal
+         # Check if a user with the provided email exists and is active
+        if not User.objects.filter(email__iexact=email, is_active=True).exists():
+            raise ValidationError("There is no user registered with the specified email address!")
+        return email

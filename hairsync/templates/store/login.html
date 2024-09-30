@@ -1,6 +1,9 @@
 {% extends './base.html' %}
 {% load static %}
 
+{% block navbar %}
+<!-- Empty navbar block to hide navbar -->
+{% endblock %}
 
 {% block content %}
 
@@ -23,7 +26,7 @@
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control" placeholder="Enter password" id="password" name="password" required>
-            <a href="" class="form-text mt-3">Forgot Password?</a>
+            <a href="{% url 'password_reset' %}" class="form-text mt-3">Forgot Password?</a>
         </div>
         <button type="submit"class="btn btn-primary">Submit</button>
     </form>

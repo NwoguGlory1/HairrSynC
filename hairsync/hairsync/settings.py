@@ -132,6 +132,9 @@ USE_TZ = True
  
 STATIC_URL = "static/"  # This is the URL used to access static files in the browser
 
+#For localhost testing
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 # for media files to be accessed 
 MEDIA_URL = "/media/"
 # the file system path where media files will be stored on the server, on 'media' dir inside the project's base.
