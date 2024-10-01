@@ -65,8 +65,7 @@
                         <ul class="navbar-nav ms-auto">
                           {% if user.is_authenticated %}
                           <li class="nav-item">
-                            <a class="nav-link" href="">{{ user.username }}'s Profile</a>
-                            <!-- <a class="nav-link" href=""> Profile</a> -->
+                            <a class="nav-link" href="{% url 'userprofile' %}">{{ user.username }}'s Profile</a>
                           </li>
                           <li class="nav-item">
                             <a class="nav-link" href="{% url 'logout' %}">Logout</a>

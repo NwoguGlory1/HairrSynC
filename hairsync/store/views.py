@@ -49,9 +49,18 @@ def signup(request):
                 messages.error(request, 'The email you inputted is already in use')
             else:
                 # If the email is unique, save the user and log them in
-                user = form.save()
-                messages.success(request, "Account created successfully!")
+                user = form.save(commit=False)
+
+                # Add the first name, last name, and email before saving
+                user.first_name = form.cleaned_data.get('first_name')
+                user.last_name = form.cleaned_data.get('last_name')
+                user.email = email
+
+                # Now save the user to the database
+                user.save()
+                
                 login(request, user)
+                messages.success(request, "Account created successfully!")
                 return redirect('/login/')
         else:
             # If the form is not valid (other field errors like username or password)
@@ -158,10 +167,15 @@ class CustomPasswordResetDoneView(PasswordResetDoneView):
 
         return context
 
-
 def logout_view(request):
     logout(request)
     return render(request, 'store/index.html')
+
+def userprofile_view(request):
+    return render(request, 'store/userprofile.html', {
+        'user': request.user,  # Pass the user object to the template
+    })
+
 
 def cart(request):
     return render(request, 'store/cart.html')
