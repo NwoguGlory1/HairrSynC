@@ -1,11 +1,17 @@
 from django.contrib import admin
-from .models import Category, Product, CategoryImage, CartItem, ShippingAddress, Review
+from .models import Category, Profile, Product, CategoryImage, CartItem, ShippingAddress, Review
 
 # Register your models here.
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug']
     prepopulated_fields = {'slug': ('name',)}
+
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    # Display these fields in the list view of the admin
+    list_display = ['user', 'avatar', 'bio']
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):

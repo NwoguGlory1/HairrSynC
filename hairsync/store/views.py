@@ -11,6 +11,7 @@ from django.contrib.auth.views import PasswordResetView
 from django.urls import reverse_lazy
 from .forms import EmailValidationOnForgotPassword
 from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView
+from django.contrib.auth.decorators import login_required
 
 from .models import Category, CategoryImage, Product
 
@@ -171,6 +172,7 @@ def logout_view(request):
     logout(request)
     return render(request, 'store/index.html')
 
+@login_required
 def userprofile_view(request):
     return render(request, 'store/userprofile.html', {
         'user': request.user,  # Pass the user object to the template

@@ -133,6 +133,16 @@ class Order(models.Model):
     def get_orders_by_customer(customer_id): 
         return Order.objects.filter(customer=customer_id).order_by('-date') 
 
+# Extending User Model Using a One-To-One Link
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    avatar = models.ImageField(default='default.jpg', upload_to='profile_pics') #default='default.jpg' is the default image to use for a user if they don't upload one 
+    #The second argument upload_to='profile_images' is the directory where images get uploaded to
+
+    bio = models.TextField() #The bio is just a text field where some information about users is stored
+
+    def __str__(self):
+        return self.user.username
 
 # Cart model
 class CartItem(models.Model):
