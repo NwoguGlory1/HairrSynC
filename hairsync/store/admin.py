@@ -7,7 +7,6 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug']
     prepopulated_fields = {'slug': ('name',)}
 
-
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     # Display these fields in the list view of the admin
