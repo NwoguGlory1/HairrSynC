@@ -173,8 +173,10 @@ def logout_view(request):
 
 @login_required
 def userprofile_view(request):
+    profile = request.user.profile  # Get the user's profile
     return render(request, 'store/userprofile.html', {
-        'user': request.user,  # Pass the user object to the template
+        'user': request.user,
+        'profile': profile,  # Pass the profile instance to the template
     })
 
 
