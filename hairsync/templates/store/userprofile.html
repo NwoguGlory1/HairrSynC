@@ -66,9 +66,9 @@
                     <div class="col-md-3">
                         <!-- Display the user's profile picture -->
             {% if profile.avatar %}
-            <img src="" alt="Profile Picture" class="rounded-circle" width="150" height="150">
+            <img src="{{ user.profile.avatar.url }}" alt="Profile Picture" class="rounded-circle" width="150" height="150">
         {% else %}
-            <img src="" alt="Default Picture" class="rounded-circle" width="150" height="150"> <!-- Default image -->
+            <img src="{{ MEDIA_URL }}profile_pics/default.png" alt="Default Picture" class="rounded-circle" width="150" height="150"> <!-- Default image -->
         {% endif %}
         <h3>{{ profile.user.username }}</h3>
     </div>

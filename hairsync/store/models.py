@@ -136,7 +136,7 @@ class Order(models.Model):
 # Extending User Model Using a One-To-One Link
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(default='default.jpg', upload_to='profile_pics') #default='default.jpg' is the default image to use for a user if they don't upload one 
+    avatar = models.ImageField(default='profile_pics/default.png', upload_to='profile_pics') #default='default.jpg' is the default image to use for a user if they don't upload one 
     #The second argument upload_to='profile_images' is the directory where images get uploaded to
 
     bio = models.TextField() #The bio is just a text field where some information about users is stored

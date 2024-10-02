@@ -8,4 +8,4 @@ class StoreConfig(AppConfig):
     # add this
     # What we did is override the ready() method of the users app config to perform initialization task which is registering signals
     def ready(self):
-        import store.signals  # nameofapp.signals
+        import store.signals  # nameofapp.signals, Ensure signals are loaded
