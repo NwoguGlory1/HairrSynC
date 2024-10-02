@@ -9,7 +9,7 @@ from .forms import SignUpForm
 from .forms import EmailValidationOnForgotPassword
 from django.contrib.auth.views import PasswordResetView
 from django.urls import reverse_lazy
-from .forms import EmailValidationOnForgotPassword
+from .forms import EmailValidationOnForgotPassword,  ProfileForm
 from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView
 from django.contrib.auth.decorators import login_required
 
@@ -184,6 +184,23 @@ def userprofile_view(request):
         'user': request.user,
         'profile': profile,  # Pass the profile instance to the template
     })
+
+@login_required
+def editprofile_view(request):
+    profile = request.user.profile
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('userprofile')  # Redirect to the profile page after saving
+    else:
+        form = ProfileForm(instance=profile)
+
+    context = {
+        'form': form,
+    }
+    return render(request, 'edit_profile.html', context)
 
 
 def cart(request):

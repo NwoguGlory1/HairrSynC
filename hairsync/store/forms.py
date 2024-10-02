@@ -1,20 +1,9 @@
-# store/forms.py
-# from django import forms
-
-
-# class SignupForm(forms.Form):
-#     username = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Username'}))
-#     first_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
-#     last_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
-#     email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
-#     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
-#     confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password'}))
-
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, PasswordResetForm
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.forms.widgets import EmailInput, PasswordInput
+from .models import Profile
 
 class SignUpForm(UserCreationForm):
     password1 = forms.CharField(max_length=16, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
@@ -55,3 +44,8 @@ class EmailValidationOnForgotPassword(PasswordResetForm):
         if not User.objects.filter(email__iexact=email, is_active=True).exists():
             raise ValidationError("There is no user registered with the specified email address!")
         return email
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['avatar']

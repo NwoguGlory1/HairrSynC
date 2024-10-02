@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import CustomPasswordResetView, CustomPasswordResetDoneView
+from .views import CustomPasswordResetView, CustomPasswordResetDoneView 
 from django.contrib.auth import views as auth_views
 
 # app_name = "store"
@@ -36,6 +36,9 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'), 
 
     path('userprofile/', views.userprofile_view, name='userprofile'),     
+
+    path('edit-profile/', views.editprofile_view, name='edit-profile'),     
+
 
     path('cart/', views.cart, name='cart'),
     # path('add/<int:product_id>/', views.add_to_cart, name='add_to_cart'),
