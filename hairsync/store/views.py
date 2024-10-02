@@ -13,7 +13,7 @@ from .forms import EmailValidationOnForgotPassword
 from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView
 from django.contrib.auth.decorators import login_required
 
-from .models import Category, CategoryImage, Product
+from .models import Category, CategoryImage, Product, Profile
 
 # Create your views here.
 def index(request):
@@ -167,13 +167,19 @@ class CustomPasswordResetDoneView(PasswordResetDoneView):
 
         return context
 
+@login_required(login_url='login')
 def logout_view(request):
     logout(request)
     return render(request, 'store/index.html')
 
-@login_required
+@login_required(login_url='login')
 def userprofile_view(request):
-    profile = request.user.profile  # Get the user's profile
+    try:
+        profile = request.user.profile  # Get the user's profile
+    except Profile.DoesNotExist:
+        # If the profile doesn't exist, create one for the user
+        profile = Profile.objects.create(user=request.user)
+    
     return render(request, 'store/userprofile.html', {
         'user': request.user,
         'profile': profile,  # Pass the profile instance to the template

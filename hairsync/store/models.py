@@ -143,6 +143,7 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+    # return f"{self.user.username}'s profile"
 
 # Cart model
 class CartItem(models.Model):
