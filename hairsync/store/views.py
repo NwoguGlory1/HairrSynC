@@ -185,22 +185,22 @@ def userprofile_view(request):
         'profile': profile,  # Pass the profile instance to the template
     })
 
-# @login_required
-# def editprofile_view(request):
-#     profile = request.user.profile
+@login_required(login_url='login')
+def editprofile_view(request):
+    profile = request.user.profile
 
-#     if request.method == 'POST':
-#         form = ProfileForm(request.POST, request.FILES, instance=profile)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('userprofile')  # Redirect to the profile page after saving
-#     else:
-#         form = ProfileForm(instance=profile)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('userprofile')  # Redirect to the profile page after saving
+    else:
+        form = ProfileForm(instance=profile)
 
-#     context = {
-#         'form': form,
-#     }
-#     return render(request, 'edit_profile.html', context)
+    context = {
+        'form': form,
+    }
+    return render(request, 'store/edit-profile.html', context)
 
 
 def cart(request):

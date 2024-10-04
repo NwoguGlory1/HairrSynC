@@ -37,7 +37,7 @@ urlpatterns = [
 
     path('userprofile/', views.userprofile_view, name='userprofile'),     
 
-    # path('editprofile/', views.editprofile_view, name='editprofile'),     
+    path('edit_profile/', views.editprofile_view, name='edit_profile'),     
 
     path('cart/', views.cart, name='cart'),
     # path('add/<int:product_id>/', views.add_to_cart, name='add_to_cart'),
