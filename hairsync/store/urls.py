@@ -4,6 +4,7 @@ from .views import CustomPasswordResetView, CustomPasswordResetDoneView
 from django.contrib.auth import views as auth_views
 
 # app_name = "store"
+#name does not need to match the path name.
 urlpatterns = [
     # Home Page
     path('', views.index, name='index'),
@@ -13,7 +14,7 @@ urlpatterns = [
     path('all-products/', views.all_products, name='all_products'),
     
     path('item/<slug:slug>/', views.detail, name='detail'),
-    # path('', views., name=''),
+    # path('', views.viewsfxn, name=''),
 
     path('category/<slug:category_slug>/', views.category_products, name='category_products'),
 
@@ -22,11 +23,11 @@ urlpatterns = [
 
     # Forgot password URL
     # path('password_reset/', auth_views.PasswordResetView.as_view(template_name='store/password_reset_form.html'), name='password_reset'),
-    
     # Forgot password URL (using the custom view)
+    #Ist page when user clicks forgot password
     path('password_reset/', CustomPasswordResetView.as_view(), name='password_reset'),
     # Page shown after submitting email for password reset
-     path('password-reset/done/', CustomPasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('password-reset/done/', CustomPasswordResetDoneView.as_view(), name='password_reset_done'),
     # path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='store/password_reset_done.html'), name='password_reset_done'),
     # URL from the password reset email for the user to enter a new password
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='store/password_reset_confirm.html'), name='password_reset_confirm'),

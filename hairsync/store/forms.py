@@ -27,7 +27,7 @@ class SignUpForm(UserCreationForm):
             'username': forms.TextInput(attrs={
                         'class':'form-control',
                         'placeholder':'Username',
-                }), 
+                }),
             'first_name': forms.TextInput(attrs={
                         'class':'form-control',
                         'placeholder':'First name',
@@ -50,8 +50,9 @@ class EmailValidationOnForgotPassword(PasswordResetForm):
           # Get the email entered in the form
         email = self.cleaned_data.get('email')
         # Log the email for debugging (optional)
-        print(f"Validating email: {email}")  # Added this to check if email was retrieved by outputting it to terminal
+        # print(f"Validating email: {email}")  # Added this to check if email was retrieved by outputting it to terminal
          # Check if a user with the provided email exists and is active
         if not User.objects.filter(email__iexact=email, is_active=True).exists():
             raise ValidationError("There is no user registered with the specified email address!")
         return email
+    
