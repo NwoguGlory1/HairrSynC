@@ -135,13 +135,13 @@ STATIC_URL = "static/"  # This is the URL used to access static files in the bro
 #For localhost testing
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# Gmail Email Backend
+# Gmail Email Backend hardcodingist
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'yourgmail@gmail.com'  # Replace with your Gmail address
-EMAIL_HOST_PASSWORD = 'your_app_password'  # Replace with your 16-digit app password
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER')  # Replace with your Gmail address
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS') # Replace with your 16-digit app password
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # for media files to be accessed 
